@@ -30,6 +30,19 @@
         (warn "Retrying on 202 response")
         (sleep delay)))))
 
+
+(define-condition github-response-error (response-error)
+  ((message
+    :initarg :response
+    :reader github-response-error-response))
+  (:report
+   (lambda (condition stream)
+     (let ((response (github-response-error-response condition)))
+       (format stream "~A ~S from ~A~%"
+               (status-code response)
+               (reason-phrase response)
+               (request response))))))
+
 (defmethod process-response ((response github-response))
   (unless (stringp (body response))
     (setf (body response)
@@ -37,9 +50,8 @@
   (when (search "application/json" (header-value "content-type" response))
     (setf (%json response) (yason:parse (body response))))
   (unless (eql (status-code response) 200)
-    (error "Unexpected status code for ~A -- ~A"
-           response
-           (status-code response)))
+    (error 'github-response-error
+           :response response))
   response)
 
 
