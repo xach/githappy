@@ -36,7 +36,12 @@
           (utf8-string (body response))))
   (when (search "application/json" (header-value "content-type" response))
     (setf (%json response) (yason:parse (body response))))
+  (unless (eql (status-code response) 200)
+    (error "Unexpected status code for ~A -- ~A"
+           response
+           (status-code response)))
   response)
 
 
 
+;;; TODO: Rate limiting
