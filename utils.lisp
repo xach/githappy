@@ -38,3 +38,8 @@
            (length seq))
        (= (mismatch subseq seq :test test)
           (length subseq))))
+
+(defun sleep-until (universal-time)
+  (let ((delta (- universal-time (get-universal-time))))
+    (when (plusp delta)
+      (sleep delta))))
