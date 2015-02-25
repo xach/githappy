@@ -16,5 +16,6 @@
                (:file "http")
                (:file "github-api")
                (:file "github-protocols")
-               (:file "github")))
+               (:file "github")
+               (:file "rate-limit")))
 
