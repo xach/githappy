@@ -84,3 +84,14 @@
   needed after receiving it. Returns the response object.")
   (:method (response)
     response))
+
+
+;;; Conditions
+
+(define-condition http-message-error (error)
+  ((message
+    :initarg :message
+    :reader http-message-error-message)))
+
+(define-condition request-error (http-message-error) ())
+(define-condition response-error (http-message-error) ())
