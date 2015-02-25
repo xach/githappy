@@ -87,4 +87,10 @@
 (defmethod header-value (name http-message)
   (cdr (assoc name (headers http-message) :test 'string-equal)))
 
+(defmethod add-header (name value request)
+  (push (cons name (header-value-string value))
+        (headers request)))
 
+(defmethod ensure-header (name value request)
+  (unless (header-value name request)
+    (add-header name value request)))

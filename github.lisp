@@ -2,6 +2,8 @@
 
 (in-package #:githappy)
 
+(defvar *oauth2-token* nil)
+
 (defclass github-response (response)
   ((json
     :initarg :json
@@ -16,6 +18,10 @@
    :response-class 'github-response))
 
 (defmethod submit ((request github-request))
+  (when *oauth2-token*
+    (ensure-header "Authorization"
+                   (format nil "token ~A" *oauth2-token*)
+                   request))
   (let ((delay 1)
         (attempt 0)
         (max 8))

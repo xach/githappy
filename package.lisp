@@ -14,5 +14,6 @@
            #:repo-teams
            #:repo-tags
            #:repo-branches
-           #:repo-branch-info))
+           #:repo-branch-info
+           #:*oauth2-token*))
 
