@@ -2,7 +2,13 @@
 
 (in-package #:githappy)
 
-(defvar *oauth2-token* nil)
+(defvar *oauth2-token* nil
+  "An OAuth2 token to use for authenticated requests. When this
+  variable is set to a valid token, the rate limit goes from 60
+  requests per hour to 5000 (as of 2015-02-25). Tokens can be obtained
+  via a web authentication process. Personal access tokens can be
+  generated via https://github.com/settings/applications, which is
+  much easier than going through the web auth process.")
 
 (defclass github-response (response)
   ((json
