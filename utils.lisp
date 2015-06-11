@@ -20,7 +20,7 @@
     (null
      json)
     (cons
-     (jref (jref (first key) json) (rest key)))))
+     (jref (jref json (first key)) (rest key)))))
 
 (defun jdump (json &optional (stream *standard-output*))
   "Write JSON formatting of JSON object to STREAM."
