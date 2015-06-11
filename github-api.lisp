@@ -52,6 +52,7 @@
 (define-api-request repo-tags "/repos/:owner/:repos/tags")
 (define-api-request repo-branches "/repos/:owner/:repo/branches")
 (define-api-request repo-branch-info "/repos/:owner/:repo/branches/:branch")
+(define-api-request repo-releases "/repos/:owner/:repo/releases")
 
 
 ;;; TODO: Process a github response to extract the prev, next, last

@@ -15,5 +15,6 @@
            #:repo-tags
            #:repo-branches
            #:repo-branch-info
+           #:repo-releases
            #:*oauth2-token*))
 
