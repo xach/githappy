@@ -30,6 +30,21 @@
 (defun jdump-to-string (json)
   (with-output-to-string (s) (jdump json s)))
 
+(defun table (&rest keys-and-values)
+  "Make a table for feeding to YASON:ENCODE."
+  (flet ((stringize (thing)
+           (etypecase thing
+             (string thing)
+             (keyword (string-downcase thing)))))
+    (let ((table (make-hash-table :test 'equal)))
+      (loop for (key value) on keys-and-values by #'cddr
+            do (setf (gethash (stringize key) table) value))
+      table)))
+
+(defun js (&rest keys-and-values)
+  (with-output-to-string (s)
+    (yason:encode (apply #'table keys-and-values) s)))
+
 (defun split (delimiter string)
   (ppcre:split (ppcre:quote-meta-chars delimiter) string))
 

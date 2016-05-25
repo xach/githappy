@@ -4,6 +4,8 @@
   (:use #:cl)
   (:export #:json
            #:jref
+           #:js
+           #:table
            #:user-repos
            #:org-repos
            #:repo-info
@@ -16,5 +18,7 @@
            #:repo-branches
            #:repo-branch-info
            #:repo-releases
+           #:repo-issues
+           #:modify-repo-issue
            #:*oauth2-token*))
 

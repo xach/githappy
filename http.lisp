@@ -54,6 +54,7 @@
   (multiple-value-bind (body status-code headers uri
                              stream must-close-p reason-phrase)
       (drakma:http-request (uri request)
+                           :content (body request)
                            :method (request-method request)
                            :parameters (request-parameters request)
                            :additional-headers (headers request)
