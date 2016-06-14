@@ -20,7 +20,13 @@
     (null
      json)
     (cons
-     (jref (jref json (first key)) (rest key)))))
+     (let ((sub-key (first key))
+           (rest (rest key)))
+       (if (eql sub-key :*)
+           (mapcar (lambda (sub-json)
+                     (jref sub-json rest))
+                   json)
+           (jref (jref json (first key)) (rest key)))))))
 
 (defun jdump (json &optional (stream *standard-output*))
   "Write JSON formatting of JSON object to STREAM."
