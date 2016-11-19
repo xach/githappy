@@ -60,10 +60,13 @@ a JSON value for the body of the request."
 (define-api-request repo-branches "/repos/:owner/:repo/branches")
 (define-api-request repo-branch-info "/repos/:owner/:repo/branches/:branch")
 (define-api-request repo-releases "/repos/:owner/:repo/releases")
-(define-api-request repo-issues "/repos/:owner/:repo/issues")
 
+(define-api-request repo-issues "/repos/:owner/:repo/issues")
+(define-api-request repo-issue "/repos/:owner/:repo/issues/:number")
 (define-api-request modify-repo-issue (:patch
                                        "/repos/:owner/:repo/issues/:number"))
+(define-api-request create-repo-issue (:post
+                                       "/repos/:owner/:repo/issues"))
 
 
 

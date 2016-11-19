@@ -64,3 +64,22 @@
   (let ((delta (- universal-time (get-universal-time))))
     (when (plusp delta)
       (sleep delta))))
+
+(defparameter *github-url-patterns*
+  '(("github.com/(.*?)/(.*?)(\\.git|/)?$" :owner :repo)
+    ("@github.com:(.*?)/(.*?)\\.git$" :owner :repo)))
+
+(defun parse-github-url (url)
+  (dolist (pattern *github-url-patterns*)
+    (destructuring-bind (regex &rest bindings)
+        pattern
+      (multiple-value-bind (start end starts ends)
+          (ppcre:scan regex url)
+        (declare (ignore start end))
+        (when (<= (length bindings) (length starts))
+          (return
+            (loop for binding in bindings
+                  for start across starts
+                  for end across ends
+                  collect binding
+                  collect (subseq url start end))))))))

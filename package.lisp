@@ -4,8 +4,11 @@
   (:use #:cl)
   (:export #:json
            #:jref
+           #:=jref
            #:js
            #:table
+           #:*github-url-patterns*
+           #:parse-github-url
            #:user-repos
            #:org-repos
            #:repo-info
@@ -19,6 +22,7 @@
            #:repo-branch-info
            #:repo-releases
            #:repo-issues
+           #:repo-issue
            #:modify-repo-issue
            #:*oauth2-token*))
 
