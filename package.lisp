@@ -24,6 +24,19 @@
            #:repo-issues
            #:repo-issue
            #:modify-repo-issue
+           #:user-gists
+           #:gists
+           #:public-gists
+           #:starred-gists
+           #:gist-revision-info
+           #:gist-commits
+           #:star-gist
+           #:unstar-gist
+           #:gist-star-status
+           #:fork-gist
+           #:gist-forks
+           #:delete-gist
            #:create-gist
+           #:modify-gist
            #:*oauth2-token*))
 
