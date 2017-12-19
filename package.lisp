@@ -24,5 +24,6 @@
            #:repo-issues
            #:repo-issue
            #:modify-repo-issue
+           #:create-gist
            #:*oauth2-token*))
 
