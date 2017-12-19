@@ -36,6 +36,16 @@
 (defun jdump-to-string (json)
   (with-output-to-string (s) (jdump json s)))
 
+(defun yasonize-value (value)
+  "Turn an aesthetic (to me) value into a value yason knows how to
+encode. Mostly for encoding :TRUE and :FALSE as booleans; other values
+are returned unchanged."
+  (case value
+    (:false 'yason:false)
+    ;; could use t as a value here
+    (:true 'yason:true)
+    (t value)))
+
 (defun table (&rest keys-and-values)
   "Make a table for feeding to YASON:ENCODE."
   (flet ((stringize (thing)
@@ -44,7 +54,8 @@
              (keyword (string-downcase thing)))))
     (let ((table (make-hash-table :test 'equal)))
       (loop for (key value) on keys-and-values by #'cddr
-            do (setf (gethash (stringize key) table) value))
+            do (setf (gethash (stringize key) table)
+                     (yasonize-value value)))
       table)))
 
 (defun js (&rest keys-and-values)
