@@ -24,6 +24,7 @@
            #:repo-issues
            #:repo-issue
            #:modify-repo-issue
+           #:create-repo-issue-comment
            #:user-gists
            #:gists
            #:public-gists

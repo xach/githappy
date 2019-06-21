@@ -92,6 +92,9 @@ name, e.g. (public-name \"publicName\")."
 (define-api-request create-repo-issue (:post
                                        "/repos/:owner/:repo/issues"))
 
+(define-api-request create-repo-issue-comment
+  (:post "/repos/:owner/:repo/issues/:issue-number/comments"))
+
 (define-api-request user-gists (:get "/users/:username/gists" since)
   :documentation "Return public gists for the specified user.")
 
